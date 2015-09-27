@@ -1,0 +1,12 @@
+$ORIGIN .
+$TTL 300        ; 5 minutes
+int.docker.net          IN SOA  dns. franck.docker.net. (
+                                2015091118 ; serial
+                                3600       ; refresh (1 hour)
+                                600        ; retry (10 minutes)
+                                604800     ; expire (1 week)
+                                300        ; minimum (5 minutes)
+                                )
+                        NS      dns.
+$ORIGIN int.docker.net.
+$TTL 60 ; 1 minute

@@ -1,0 +1,4 @@
+key "bind.int.docker.net" {
+        algorithm hmac-md5;
+        secret "NuZ7rRbE7Kge80uxbmy3hg==";
+};
