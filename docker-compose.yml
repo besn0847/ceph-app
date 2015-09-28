@@ -1,0 +1,50 @@
+dns:
+  image: cephapp_dns
+  container_name: dns
+  hostname: dns
+  ports:
+   - "53/udp"
+
+mon0:
+  image: cephapp_node
+  container_name: mon0
+  hostname: mon0
+  ports:
+   - "6789"
+  links:
+   - dns
+
+osd0:
+  image: cephapp_node
+  container_name: osd0
+  hostname: osd0
+  links:
+   - dns
+
+osd1:
+  image: cephapp_node
+  container_name: osd1
+  hostname: osd1
+  links:
+   - dns
+
+mdc0:
+  image: cephapp_node
+  container_name: mdc0
+  hostname: mdc0
+  links:
+   - dns
+
+mgmt:
+  image: cephapp_mgmt
+  container_name: mgmt
+  hostname: mgmt
+  ports:
+   - "22"
+  links:
+   - dns
+   - mon0
+   - osd0
+   - osd1
+   - mdc0
+

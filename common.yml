@@ -1,2 +1,8 @@
 dns:
   build: dns
+
+node:
+  build: node
+
+mgmt:
+  build: mgmt
