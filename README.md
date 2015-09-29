@@ -84,43 +84,46 @@ And finally check the cluster health :
 ### - App  ops
 You can also mount the CephFS drive on the Docker host provided you have the ceph-common package installed.
 To do so, go back to the management node :
-     ssh -p <ssh_exposed_port> ceph@localhost
+
+	ssh -p <ssh_exposed_port> ceph@localhost
 
 Cat the install file :
-     sudo cat /var/log/supervisor/ceph-deploy-stdout---supervisor-<some_letters>.log
+
+	sudo cat /var/log/supervisor/ceph-deploy-stdout---supervisor-<some_letters>.log
 
 Right at the end you have the secret key :
-     sudo grep "secret=" /var/log/supervisor/ceph-deploy-stdout---supervisor-iEaBlQ.log
-          sudo mount -t ceph mon0:6789:/ <your_mount_point> -o name=admin,secret=AQDpqQpWqMqjFhAAwVxOT2gvrakkY2GTTEe+yg==
+	sudo grep "secret=" /var/log/supervisor/ceph-deploy-stdout---supervisor-iEaBlQ.log
+		sudo mount -t ceph mon0:6789:/ <your_mount_point> -o name=admin,secret=AQDpqQpWqMqjFhAAwVxOT2gvrakkY2GTTEe+yg==
 
 Get the monitor IP address
-     nslookup mon0
-          Server:         172.17.0.1
-          Address:        172.17.0.1#53
-     
-          Name:   mon0.int.docker.net
-          Address: 172.17.0.2
+
+	nslookup mon0
+		Server:         172.17.0.1
+		Address:        172.17.0.1#53
+		
+		Name:   mon0.int.docker.net
+		Address: 172.17.0.2
 
 Go back to the Docker host and mount the CephFS drive :
-     sudo mount -t ceph 172.17.0.2:6789:/ /mnt -o name=admin,secret=AQDpqQpWqMqjFhAAwVxOT2gvrakkY2GTTEe+yg==
+
+	sudo mount -t ceph 172.17.0.2:6789:/ /mnt -o name=admin,secret=AQDpqQpWqMqjFhAAwVxOT2gvrakkY2GTTEe+yg==
 
 Just check the drive is mounted a 'df -k' command.
 
 Your basic Ceph cluster is ready in less than 1 minute !
 
 ## References
-     Previous post on Ceph with Docker plumbing : here
-     Advanced Ceph deployment tutorial : here
+     * Previous post on Ceph with Docker plumbing : [here](http://fbevmware.blogspot.fr/2014/05/software-defined-compute-network-and.html?view=sidebar)
+     * Advanced Ceph deployment tutorial : [here](http://alanxelsys.com/ceph-howto/)
 
 ## Issues
-     #1 When restarting the containers, their IPaddresses get changed which destroys the Ceph cluster topology
-               Workaround : none - just use this to quickly have a clean Ceph cluster for test & dev
+     1 When restarting the containers, their IPaddresses get changed which destroys the Ceph cluster topology
+		Workaround : none - just use this to quickly have a clean Ceph cluster for test & dev
      
-     #2 The 6789 port is exposed on the monitor but it is not possible to mount the CephFS drive
+     2 The 6789 port is exposed on the monitor but it is not possible to mount the CephFS drive
                Workaround : do the mount directly on the mon0 IP address - an direct IP connectivity is required (no PAT)
 
 ## Future
-
 	* VDI : i'll use this along with the containerized desktop to deliver a Docker VDI experience
 	* Need to find a way to fix the issue #1 above
 	* I'll probably add a RadosGW at some point to offer an S3-like mount point
