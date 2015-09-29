@@ -1,7 +1,8 @@
-# Ceph application built & run with docker-compose
+# Ceph application with Docker-Compose
 
 ## Inception
 Why doing Ceph on Docker ?
+
 Especially as Ceph is clearly not designed to be run in a containerized environment due to its dependance on the IP topology. The monitors and other datastores have their IP hardcoded in the Ceph cluster definition. In Docker, upon every restart the containers will have a new IP adress so breaking the Ceph cluster topology map. 
 
 That said, Ceph provides a distributed data store which can ensure data persistence across multiple nodes. In a containerized VDI environment, where user data must be preserved, Ceph will provide the backend functions to ensure persistence across desktops, reboots...
@@ -12,15 +13,15 @@ This tutorial is really the first version to prove the approach is viable. Many 
 
 ##Quickstart
 Pre-requisites (not tested with lower versions):
-     - Docker 1.8.0+ to host Ceph environment
-     - Docker-compose 1.8.0+ (?) to build the Environment 
-     - Ceph-common to mount the Ceph partition on Docker host
+     * Docker 1.8.0+ to host Ceph environment
+     * Docker-compose 1.8.0+ (?) to build the Environment 
+     * Ceph-common to mount the Ceph partition on Docker host
 
 I tried to use Boot2docker & Photon as Docker host but there is no ceph-common package available to mount on the host. So you can still build on those hosts but won't be able to mount the CephFS drive.
 
-Step 1 : Clone the repo : git clone https://github.com/besn0847/ceph-app.git
-Step 2 : Build the images : cd ceph-app && docker-compose -f common.yml build
-Step 3 : Bootstrap the environment : docker-compose up -d
+* Step 1 : Clone the repo : git clone https://github.com/besn0847/ceph-app.git
+* Step 2 : Build the images : cd ceph-app && docker-compose -f common.yml build
+* Step 3 : Bootstrap the environment : docker-compose up -d
 
 Again don't start and stop the containers as their IP will change and it will screw the Ceph topology.
 
@@ -43,13 +44,13 @@ So the Ceph app can only be started once.
 
 ### - App bootstrap & start-up
 First and foremost, you need to download the app topo builder from Github :
-     git clone https://github.com/besn0847/ceph-app.git
+     `git clone https://github.com/besn0847/ceph-app.git`
 
 Then you need to build the container images
-     cd ceph-app && docker-compose -f common.yml build
+     `cd ceph-app && docker-compose -f common.yml build`
 
 Once the images have been built (take 15 minutes depending on your network speed), just kick off the app:
-     docker-compose up -d
+     `docker-compose up -d`
 
 The DNS registrations and the cluster configuration must be ordered properly. So i introduced few timers meaning the average bootstrap time is around 30 to 40 seconds, so just wait about one minute before checking the deployment is OK.
 
