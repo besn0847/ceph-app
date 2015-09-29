@@ -65,6 +65,16 @@ Once the images have been built (take 15 minutes depending on your network speed
 
 The DNS registrations and the cluster configuration must be ordered properly. So i introduced few timers meaning the average bootstrap time is around 30 to 40 seconds, so just wait about one minute before checking the deployment is OK.
 
+	docker-compose ps
+		Name      Command      State                Ports              
+		--------------------------------------------------------------
+		dns    /bootstrap.sh   Up      0.0.0.0:32770->53/udp           
+		mdc0   /bootstrap.sh   Up      22/tcp                          
+		mgmt   /bootstrap.sh   Up      0.0.0.0:32773->22/tcp           
+		mon0   /bootstrap.sh   Up      22/tcp, 0.0.0.0:32772->6789/tcp 
+		osd0   /bootstrap.sh   Up      22/tcp                          
+		osd1   /bootstrap.sh   Up      22/tcp       
+
 To check the Ceph deployment, connect to the mgmt node :
 
      ssh -p <ssh_exposed_port> ceph@localhost
