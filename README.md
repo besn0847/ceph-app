@@ -63,8 +63,8 @@ To check the Ceph deployment, connect to the mgmt node :
 
 Then connect to the monitor and start the Ceph command line :
      
-     `ssh mon0
-     sudo ceph`
+	ssh mon0
+	sudo ceph
 
 And finally check the cluster health :
 
@@ -92,6 +92,7 @@ Cat the install file :
 	sudo cat /var/log/supervisor/ceph-deploy-stdout---supervisor-<some_letters>.log
 
 Right at the end you have the secret key :
+
 	sudo grep "secret=" /var/log/supervisor/ceph-deploy-stdout---supervisor-iEaBlQ.log
 		sudo mount -t ceph mon0:6789:/ <your_mount_point> -o name=admin,secret=AQDpqQpWqMqjFhAAwVxOT2gvrakkY2GTTEe+yg==
 
@@ -113,22 +114,22 @@ Just check the drive is mounted a 'df -k' command.
 Your basic Ceph cluster is ready in less than 1 minute !
 
 ## References
-     * Previous post on Ceph with Docker plumbing : [here](http://fbevmware.blogspot.fr/2014/05/software-defined-compute-network-and.html?view=sidebar)
-     * Advanced Ceph deployment tutorial : [here](http://alanxelsys.com/ceph-howto/)
+* Previous post on Ceph with Docker plumbing : [here](http://fbevmware.blogspot.fr/2014/05/software-defined-compute-network-and.html?view=sidebar)
+* Advanced Ceph deployment tutorial : [here](http://alanxelsys.com/ceph-howto/)
 
 ## Issues
-     1 When restarting the containers, their IPaddresses get changed which destroys the Ceph cluster topology
-		Workaround : none - just use this to quickly have a clean Ceph cluster for test & dev
+Issue 1 When restarting the containers, their IPaddresses get changed which destroys the Ceph cluster topology
+	Workaround : none - just use this to quickly have a clean Ceph cluster for test & dev
      
-     2 The 6789 port is exposed on the monitor but it is not possible to mount the CephFS drive
-               Workaround : do the mount directly on the mon0 IP address - an direct IP connectivity is required (no PAT)
+Issue 2 The 6789 port is exposed on the monitor but it is not possible to mount the CephFS drive
+	Workaround : do the mount directly on the mon0 IP address - an direct IP connectivity is required (no PAT)
 
 ## Future
-	* VDI : i'll use this along with the containerized desktop to deliver a Docker VDI experience
-	* Need to find a way to fix the issue #1 above
-	* I'll probably add a RadosGW at some point to offer an S3-like mount point
-	* I'll add an ownCloud container to store data on the Cepf FS
-	* Clustering support with Swarm addition
+* VDI : i'll use this along with the containerized desktop to deliver a Docker VDI experience
+* Need to find a way to fix the issue #1 above
+* I'll probably add a RadosGW at some point to offer an S3-like mount point
+* I'll add an ownCloud container to store data on the Cepf FS
+* Clustering support with Swarm addition
 
      
 
