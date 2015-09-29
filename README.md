@@ -28,11 +28,11 @@ Again don't start and stop the containers as their IP will change and it will sc
 ## Architecture
 The overall architecture is quite simple :
 
-	* 1 container to provide DNS services
-	* 1 container acting as the Ceph management node
-	* 1 container acting as the Ceph monitor
-	* 2 containers acting as the Ceph object storage daemons
-	* 1 container acting as the Ceph meta data controller
+* 1 container to provide DNS services
+* 1 container acting as the Ceph management node
+* 1 container acting as the Ceph monitor
+* 2 containers acting as the Ceph object storage daemons
+* 1 container acting as the Ceph meta data controller
 
 The DNS container is used to provide name resolution to other containers as the Docker linking capability is limited to downstream links aka. not possible to link a container to another which as not been yet created.
 
