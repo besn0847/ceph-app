@@ -21,15 +21,15 @@ I tried to use Boot2docker & Photon as Docker host but there is no ceph-common p
 
 * Step 1 : Clone the repo : 
 
-	git clone https://github.com/besn0847/ceph-app.git
+	`git clone https://github.com/besn0847/ceph-app.git`
 
 * Step 2 : Build the images : 
 
-	cd ceph-app && docker-compose -f common.yml build
+	`cd ceph-app && docker-compose -f common.yml build`
 
 * Step 3 : Bootstrap the environment :
 
-	docker-compose up -d
+	`docker-compose up -d`
 
 Again don't start and stop the containers as their IP will change and it will screw the Ceph topology.
 
