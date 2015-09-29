@@ -44,25 +44,30 @@ So the Ceph app can only be started once.
 
 ### - App bootstrap & start-up
 First and foremost, you need to download the app topo builder from Github :
+
      `git clone https://github.com/besn0847/ceph-app.git`
 
 Then you need to build the container images
+
      `cd ceph-app && docker-compose -f common.yml build`
 
 Once the images have been built (take 15 minutes depending on your network speed), just kick off the app:
+
      `docker-compose up -d`
 
 The DNS registrations and the cluster configuration must be ordered properly. So i introduced few timers meaning the average bootstrap time is around 30 to 40 seconds, so just wait about one minute before checking the deployment is OK.
 
 To check the Ceph deployment, connect to the mgmt node :
-     ssh -p <ssh_exposed_port> ceph@localhost
+
+     `ssh -p <ssh_exposed_port> ceph@localhost`
 
 Then connect to the monitor and start the Ceph command line :
-     ssh mon0
-     sudo ceph
+     
+     `ssh mon0
+     sudo ceph`
 
 And finally check the cluster health :
-     ceph> health
+     `ceph> health
                HEALTH_OK
      ceph> status
      cluster a7f64266-0894-4f1e-a635-d0aeaca0e993
@@ -73,7 +78,7 @@ And finally check the cluster health :
       pgmap v25: 192 pgs, 3 pools, 1884 bytes data, 20 objects
             7483 MB used, 27788 MB / 37206 MB avail
                  192 active+clean
-     ceph> quit
+     ceph> quit`
 
 ### - App  ops
 You can also mount the CephFS drive on the Docker host provided you have the ceph-common package installed.
