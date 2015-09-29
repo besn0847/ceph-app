@@ -20,10 +20,15 @@ Pre-requisites (not tested with lower versions):
 I tried to use Boot2docker & Photon as Docker host but there is no ceph-common package available to mount on the host. So you can still build on those hosts but won't be able to mount the CephFS drive.
 
 * Step 1 : Clone the repo : 
+
 	git clone https://github.com/besn0847/ceph-app.git
+
 * Step 2 : Build the images : 
+
 	cd ceph-app && docker-compose -f common.yml build
+
 * Step 3 : Bootstrap the environment :
+
 	docker-compose up -d
 
 Again don't start and stop the containers as their IP will change and it will screw the Ceph topology.
