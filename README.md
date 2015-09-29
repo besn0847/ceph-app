@@ -67,18 +67,19 @@ Then connect to the monitor and start the Ceph command line :
      sudo ceph`
 
 And finally check the cluster health :
-     >ceph> health
-     >          HEALTH_OK
-     ceph> status
-     cluster a7f64266-0894-4f1e-a635-d0aeaca0e993
-     health HEALTH_OK
-     monmap e1: 1 mons at {mon0=172.17.0.26:6789/0}, election epoch 2, quorum 0 mon0
-     mdsmap e15: 1/1/1 up {0=0=up:active}
-     osdmap e14: 2 osds: 2 up, 2 in
-      pgmap v25: 192 pgs, 3 pools, 1884 bytes data, 20 objects
-            7483 MB used, 27788 MB / 37206 MB avail
-                 192 active+clean
-     ceph> quit
+
+	ceph> health
+		HEALTH_OK
+	ceph> status
+		cluster a7f64266-0894-4f1e-a635-d0aeaca0e993
+		health HEALTH_OK
+		monmap e1: 1 mons at {mon0=172.17.0.26:6789/0}, election epoch 2, quorum 0 mon0
+		mdsmap e15: 1/1/1 up {0=0=up:active}
+		osdmap e14: 2 osds: 2 up, 2 in
+		pgmap v25: 192 pgs, 3 pools, 1884 bytes data, 20 objects
+			7483 MB used, 27788 MB / 37206 MB avail
+			192 active+clean
+	ceph> quit
 
 ### - App  ops
 You can also mount the CephFS drive on the Docker host provided you have the ceph-common package installed.
